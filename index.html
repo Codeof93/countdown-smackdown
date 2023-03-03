@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown to Smackdown!</title>
+    <style>
+      body {
+        background-color: #282c34;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3em;
+        margin-top: 0;
+      }
+
+      #countdown {
+        font-size: 4em;
+        margin-bottom: 20px;
+      }
+
+      #countdown span {
+        display: inline-block;
+        min-width: 2em;
+      }
+
+      #countdown span:nth-child(2) {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+      }
+
+      #countdown span:last-child {
+        border-right: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Countdown to Smackdown!</h1>
+    <div id="countdown">
+      <span id="days"></span>
+      <span id="hours"></span>
+      <span id="minutes"></span>
+      <span id="seconds"></span>
+    </div>
+    <script>
+      // Set the date and time for the countdown (Eastern Time)
+      const countDownDate = new Date("March 4, 2023 8:00:00 EST").getTime();
+
+      // Update the countdown every second
+      const x = setInterval(function() {
+
+        // Get the current date and time
+        const now = new Date().getTime();
+
+        // Calculate the distance between now and the countdown date
+        const distance = countDownDate - now;
+
+        // Calculate days, hours, minutes, and seconds left
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown
+        document.getElementById("days").innerHTML = days + "d";
+        document.getElementById("hours").innerHTML = hours + "h";
+        document.getElementById("minutes").innerHTML = minutes + "m";
+        document.getElementById("seconds").innerHTML = seconds + "s";
+
+        // If the countdown is finished, display "Smackdown is here!"
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML = "Smackdown is here!";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
